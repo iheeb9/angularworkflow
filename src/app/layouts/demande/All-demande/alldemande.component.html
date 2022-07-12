@@ -1,0 +1,82 @@
+<div class="panel-header panel-header-sm">
+ 
+</div>
+
+<div class="main-content">
+
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">
+            <!-- <h5 class="card-category">demande  de conge</h5> -->
+            <div class="d-flex justify-content-between" >
+              <h4 class="card-title">Tasks</h4>
+              <div >
+                <button class="btn btn-block btn-round"  [routerLink]="['/admin/demande/adddemande']"  style="background-color: #ff3636;">
+            
+                New </button>
+                
+              </div>
+              </div>
+          
+          <div class="card-body">
+            <div class="table">
+              <div *ngIf="loading" class="d-flex justify-content-center" >
+                <div class="spinner-border" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+         
+
+              <table *ngIf="!loading " class="table">
+                <thead class=" text-primary">
+                  <th>
+                    typeConge
+                  </th>
+                  <th>
+                    Duree
+                  </th>
+                  <th>
+                    DateDebut
+                  </th>
+                  <th >
+                    dateFin
+                  </th>
+                  <th class="text-right">
+                    resultat
+                  </th>
+                </thead>
+                <tbody *ngFor=" let demande of Mydemande">
+                  <tr>
+                    <td>
+                      {{demande.typeConge}}
+                    </td>
+                    <td>
+                      {{demande.duree}} jours
+                    </td>
+                    <td>
+                      {{demande.dateDebut}}
+                    </td>
+                    <td >
+                      {{demande.dateFin}}
+                    </td>
+                    <td class="text-right" *ngIf="demande.traitement1.etats=='encours' || demande.traitement2.etats=='encours'">
+                      <span class="badge badge-info" style="background-color: gray;">encours..</span>
+                    </td>
+                    <td class="text-right" *ngIf="demande.traitement2.etats=='accepted'">
+                      <span class="badge badge-success" >accepted..</span>
+                    </td>
+                    <td class="text-right" *ngIf="demande.traitement1.etats=='refused' || demande.traitement2.etats=='refused'">
+                      <span class="badge badge-danger" >refused..</span>
+                    </td>
+                  </tr>
+            
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+</div>
+
